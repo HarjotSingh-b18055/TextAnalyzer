@@ -3,6 +3,11 @@ from ttkthemes import ThemedStyle
 import tkinter as tk
 from tkinter import filedialog
 from file_view import FileViewer	# tkinter frame to show file
+from matplotlib.figure import Figure
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
+from histogram import HistViewer
 
 
 class RootFrame(ttk.Frame):
@@ -99,9 +104,14 @@ class RootFrame(ttk.Frame):
 
 			self.window.grid_forget()
 			self.window.destroy()
-			
+		
 		self.header["text"]='Histogram'
 
+		if self.filename!='':
+			self.window = HistViewer(self,self.filename)
+		else:
+			self.header['text'] = 'No File Chosen!'
+			self.window = FileViewer(self,'')
 		
 		#self.window = ShowHistogram(self, self.file_contents)		# initialise frame to show historgam
 		
