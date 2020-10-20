@@ -15,19 +15,23 @@ class HistViewer(ttk.Frame):
 		
     def make_histogram(self,frame):
         allWords = []
+        fi = open('ignoredWords.txt','r')
+        ignoredWords = fi.read().split()
+        fi.close()
         fh = open(self.filename,'r')
         for line in fh.readlines():
             words = line.split()
             for word in words:
                 apdWord = word
-                if (apdWord[-1]=='.' or apdWord[-1]==',' or apdWord[-1]==';' or apdWord[-1]==':'):
+                if (apdWord[-1]=='.' or apdWord[-1]==',' or apdWord[-1]==';' or apdWord[-1]==':' or apdWord[-1]=='?' or apdWord[-1]=='!'):
                     apdWord = apdWord[0:len(apdWord)-1]
                 if apdWord[0]=='\'' or apdWord[0]=="\"":
                     apdWord = apdWord[1:len(apdWord)]
                 if apdWord[-1]=='\'' or apdWord[-1]=="\"":
                     apdWord = apdWord[0:len(apdWord)-1]
                 apdWord = apdWord.lower()
-                allWords.append(apdWord)
+                if apdWord not in ignoredWords:
+                    allWords.append(apdWord)
         fh.close()
         self.figure = Figure(figsize = (10,6), dpi = 100)
         self.plot = self.figure.add_subplot(1,1,1)
