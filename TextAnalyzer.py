@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
 from histogram import HistViewer
+from stats import ShowStats
 import numpy as np
 
 class RootFrame(ttk.Frame):
@@ -94,8 +95,18 @@ class RootFrame(ttk.Frame):
 			self.window.destroy()
 			
 		self.header["text"]='Word Stats'
+
+		if(self.filename!=''):
+			m_file = open(self.filename,'r', errors = 'ignore')
+			self.file_contents = m_file.read()
+			self.window = ShowStats(self, self.file_contents)
+			m_file.close()
 		
-		#self.window = ShowStats(self, self.file_contents)		# initialise frame to show stats
+		else:
+			self.header["text"] = "No File Chosen !"
+			self.window = ShowStats(Self,'')
+
+		# self.window = ShowStats(self, self.file_contents)		# initialise frame to show stats
 		
 		
 		
