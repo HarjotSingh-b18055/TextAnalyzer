@@ -77,7 +77,7 @@ class RootFrame(ttk.Frame):
 		self.header["text"]='DataFile'
 
 		if(self.filename!=''):
-			m_file  = open(self.filename, 'r')
+			m_file  = open(self.filename, 'r', errors='ignore')
 			self.file_contents = m_file.read()
 			self.window=FileViewer(self, self.file_contents)	# initialise frame to show file	
 			m_file.close()

@@ -19,7 +19,7 @@ class HistViewer(ttk.Frame):
         fi = open('ignoredWords.txt','r')
         ignoredWords = fi.read().split()
         fi.close()
-        fh = open(self.filename,'r')
+        fh = open(self.filename,'r', errors='ignore')
         for line in fh.readlines():
             words = line.split()
             for word in words:
