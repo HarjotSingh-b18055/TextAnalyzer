@@ -24,9 +24,9 @@ class HistViewer(ttk.Frame):
             words = line.split()
             for word in words:
                 apdWord = word
-                while (apdWord[-1]=='.' or apdWord[-1]==',' or apdWord[-1]==';' or apdWord[-1]==':' or apdWord[-1]=='?' or apdWord[-1]=='!' or apdWord[-1]=='\'' or apdWord[-1]=="\"" or apdWord[-1]==")" or apdWord=="]" or apdWord=="}"):
+                while (apdWord[-1]=='.' or apdWord[-1]==',' or apdWord[-1]==';' or apdWord[-1]==':' or apdWord[-1]=='?' or apdWord[-1]=='!' or apdWord[-1]=='\'' or apdWord[-1]=="\"" or apdWord[-1]==")" or apdWord[-1]=="]" or apdWord[-1]=="}"):
                     apdWord = apdWord[0:len(apdWord)-1]
-                while apdWord[-1]=='.' or apdWord[-1]==',' or apdWord[-1]==';' or apdWord[-1]==':'or apdWord[0]=='\'' or apdWord[0]=="\"" or apdWord[0]=="(" or apdWord=="[" or apdWord=="{":
+                while apdWord[0]=='.' or apdWord[0]==',' or apdWord[0]==';' or apdWord[0]==':'or apdWord[0]=='\'' or apdWord[0]=="\"" or apdWord[0]=="(" or apdWord[0]=="[" or apdWord[0]=="{":
                     apdWord = apdWord[1:len(apdWord)]
                 apdWord = apdWord.lower()
                 if apdWord not in ignoredWords:
