@@ -10,6 +10,11 @@ Install ttkthemes:
 python3 -m pip install git+https://github.com/RedFantom/ttkthemes
 ```
 
+Install matplotlib:
+```bash
+python3 -m pip install -U matplotlib
+```
+
 Run using:
 ```bash
 python3 TextAnalyzer.py
