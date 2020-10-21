@@ -1,6 +1,7 @@
 from tkinter import ttk
 from ttkthemes import ThemedStyle
 import tkinter as tk
+import os
 
 class ShowStats(ttk.Frame):
 	def __init__(self, master, file_contents):
@@ -12,9 +13,42 @@ class ShowStats(ttk.Frame):
     
 	def analysis(self):
 		data = self.file_contents
-		words = data.split()
-		stat = "The number of words in file are : "
-		stat = stat + str(len(words)) + "\n"
+		linelist = data.split('\n')
+		linelist.pop()
+		num_words = 0
+		num_lines = 0
+		num_char = 0
+		num_spaces = 0
+		word_freq = dict()
+		punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+		for line in linelist:
+			# print(line,'\n\n')
+			num_lines += 1
+			line = line.strip(os.linesep)
+			words = line.split()
+			num_words += len(words)
+			num_char += sum(1 for x in line if x not in (os.linesep,' ') )
+			num_spaces += sum(1 for x in line if x in (os.linesep,' ') )
+			for word in words:
+				for i in word:
+					if i in punctuations:
+						word = word.replace(i,"")
+				if word in word_freq:
+					word_freq[word] +=1
+				else:
+					word_freq[word] = 1
+
+		stat = " Analysis of File \n \n"
+		stat = stat + " Number of lines in file are:		 " + str(num_lines)
+		stat = stat + "\n Number of words in file are:		 " + str(num_words)
+		stat = stat + "\n Characters (without spaces):		 " + str(num_char) 
+		stat = stat + "\n Characters (with spaces):		 " + str(num_char+num_spaces)
+
+		print(data)
+		for key,values in sorted(word_freq.items(),key=lambda item: item[1],reverse=True):
+			print(key," ",values)
+		
+		
 		self.data_analysis = stat
 
 	def createWidgets(self):					
