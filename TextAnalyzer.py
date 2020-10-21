@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
 from histogram import HistViewer
-
+import numpy as np
 
 class RootFrame(ttk.Frame):
 	def __init__(self, master):
