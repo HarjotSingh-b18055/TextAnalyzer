@@ -24,12 +24,12 @@ class HistViewer(ttk.Frame):
             words = line.split()
             for word in words:
                 apdWord = word
-                while (apdWord[-1]=='.' or apdWord[-1]==',' or apdWord[-1]==';' or apdWord[-1]==':' or apdWord[-1]=='?' or apdWord[-1]=='!' or apdWord[-1]=='\'' or apdWord[-1]=="\"" or apdWord[-1]==")" or apdWord[-1]=="]" or apdWord[-1]=="}"):
+                while len(apdWord)>0 and (apdWord[-1]=='.' or apdWord[-1]==',' or apdWord[-1]==';' or apdWord[-1]==':' or apdWord[-1]=='?' or apdWord[-1]=='!' or apdWord[-1]=='\'' or apdWord[-1]=="\"" or apdWord[-1]==")" or apdWord[-1]=="]" or apdWord[-1]=="}"):
                     apdWord = apdWord[0:len(apdWord)-1]
-                while apdWord[0]=='.' or apdWord[0]==',' or apdWord[0]==';' or apdWord[0]==':'or apdWord[0]=='\'' or apdWord[0]=="\"" or apdWord[0]=="(" or apdWord[0]=="[" or apdWord[0]=="{":
+                while len(apdWord)>0 and (apdWord[0]=='.' or apdWord[0]==',' or apdWord[0]==';' or apdWord[0]==':'or apdWord[0]=='\'' or apdWord[0]=="\"" or apdWord[0]=="(" or apdWord[0]=="[" or apdWord[0]=="{"):
                     apdWord = apdWord[1:len(apdWord)]
                 apdWord = apdWord.lower()
-                if apdWord not in ignoredWords:
+                if len(apdWord)>0 and (apdWord not in ignoredWords):
                     allWords.append(apdWord)
         fh.close()
         frequencies = []
