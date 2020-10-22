@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import numpy as np
 import matplotlib
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg,NavigationToolbar2Tk
@@ -19,27 +18,26 @@ class HistViewer(ttk.Frame):
         fi = open('ignoredWords.txt','r')
         ignoredWords = fi.read().split()
         fi.close()
+        symbols = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+        frequencies = {}
         fh = open(self.filename,'r', errors='ignore')
         for line in fh.readlines():
             words = line.split()
             for word in words:
-                apdWord = word
-                while len(apdWord)>0 and (apdWord[-1]=='.' or apdWord[-1]==',' or apdWord[-1]==';' or apdWord[-1]==':' or apdWord[-1]=='?' or apdWord[-1]=='!' or apdWord[-1]=='\'' or apdWord[-1]=="\"" or apdWord[-1]==")" or apdWord[-1]=="]" or apdWord[-1]=="}"):
-                    apdWord = apdWord[0:len(apdWord)-1]
-                while len(apdWord)>0 and (apdWord[0]=='.' or apdWord[0]==',' or apdWord[0]==';' or apdWord[0]==':'or apdWord[0]=='\'' or apdWord[0]=="\"" or apdWord[0]=="(" or apdWord[0]=="[" or apdWord[0]=="{"):
-                    apdWord = apdWord[1:len(apdWord)]
-                apdWord = apdWord.lower()
-                if len(apdWord)>0 and (apdWord not in ignoredWords):
-                    allWords.append(apdWord)
+                for i in word:
+                    if i in symbols:
+                        word = word.replace(i,'')
+                word = word.lower()
+                if len(word)>0 and (word not in ignoredWords):
+                    if word not in frequencies:
+                        frequencies[word] = 1
+                    else:
+                        frequencies[word]+=1
         fh.close()
-        frequencies = []
-        uniqueWords = np.unique(allWords)
-        for word in uniqueWords:
-            frequencies.append(allWords.count(word))
         self.figure = Figure(figsize = (12,6), dpi = 100)
         self.plot = self.figure.add_subplot(1,1,1)
-        self.plot.bar(uniqueWords,frequencies)
-        self.plot.set_xticklabels(uniqueWords,rotation='vertical')
+        self.plot.bar(frequencies.keys(), frequencies.values())
+        self.plot.set_xticklabels(frequencies.keys(),rotation='vertical')
         self.canvas = FigureCanvasTkAgg(self.figure,frame)
         self.toolbar = NavigationToolbar2Tk(self.canvas,frame)
         self.toolbar.update()
