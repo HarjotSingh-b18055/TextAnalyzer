@@ -53,7 +53,8 @@ class RootFrame(ttk.Frame):
 		self.show_hist = ttk.Button(self.panel, text="Show Histogram", command = self.ShowHist)
 		self.show_hist.grid(row=2, column=0, sticky='nsew', pady=10)
 				
-		
+		self.refreshButton = ttk.Button(self.panel, text = "Refresh", command = self.Refresh)
+		self.refreshButton.grid(row=3, column=0, sticky='nsew', pady=10)
 
 
 		
@@ -126,12 +127,9 @@ class RootFrame(ttk.Frame):
 		#self.window = ShowHistogram(self, self.file_contents)		# initialise frame to show historgam
 		
 	
-
-
-
-
-
-
+	def Refresh(self):
+		if (self.window.winfo_exists()):
+			self.window.destroy()						#destroy the current window to refresh
 
 
 
