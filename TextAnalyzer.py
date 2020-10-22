@@ -9,7 +9,6 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
 from histogram import HistViewer
 from stats import ShowStats
-import numpy as np
 
 class RootFrame(ttk.Frame):
 	def __init__(self, master):
@@ -104,7 +103,7 @@ class RootFrame(ttk.Frame):
 		
 		else:
 			self.header["text"] = "No File Chosen !"
-			self.window = ShowStats(Self,'')
+			self.window = ShowStats(self,'')
 
 		# self.window = ShowStats(self, self.file_contents)		# initialise frame to show stats
 		
