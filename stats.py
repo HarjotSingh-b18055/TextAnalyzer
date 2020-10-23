@@ -14,7 +14,7 @@ class ShowStats(ttk.Frame):
 	def analysis(self):
 		file = open('ignoredWords.txt','r')
 		ignoredWords = file.read().split()
-		file.close()
+		file.close()                                                                                                                           
 
 		data = self.file_contents
 		linelist = data.split('\n')
@@ -81,3 +81,38 @@ class ShowStats(ttk.Frame):
 		self.scrollbar.grid(row=0, column=0, sticky='nse')			
 			
 		self.text.configure(yscrollcommand=self.scrollbar.set)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
