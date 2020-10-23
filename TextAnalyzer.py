@@ -129,8 +129,13 @@ class RootFrame(ttk.Frame):
 	
 	def Refresh(self):
 		if (self.window.winfo_exists()):
+			self.window.grid_forget()
 			self.window.destroy()						#destroy the current window to refresh
 
+		m_file  = open(self.filename, 'r', errors='ignore')		#reopen updated file
+		self.file_contents = m_file.read()
+		self.window=FileViewer(self, self.file_contents)	# initialise frame to show file	
+		m_file.close()
 
 
 
