@@ -13,7 +13,7 @@ class ShowStats(ttk.Frame):
     
 	def analysis(self):
 		file = open('ignoredWords.txt','r')
-		ignoredWords = file.read().split()
+		ignoredWords = file.read().split()  		#python list containing common words to be ignored while analysing frequency distribution.
 		file.close()
 
 		data = self.file_contents
@@ -23,7 +23,7 @@ class ShowStats(ttk.Frame):
 		num_lines = 0
 		num_char = 0
 		num_spaces = 0
-		word_freq = dict()
+		word_freq = dict()					# dictionary to store frequency of each word in file.
 		maxlength=0
 		punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
 		for line in linelist:
@@ -57,12 +57,12 @@ class ShowStats(ttk.Frame):
 		stat = stat + "\n\n\n Most commonly occuring 10 words with their frequency of occurence\n\n"
 		stat = stat + "Word\t\t|\t\tFrequency \n"
 		i=10
-		for key,values in sorted(word_freq.items(),key=lambda item: item[1],reverse=True):
+		for key,values in sorted(word_freq.items(),key=lambda item: item[1],reverse=True): 			#dictionary traversal based on descending order of values.
 			stat = stat + "\n " +str(key) + "\t\t|\t\t"+ str(values)
 			i-=1
 			if(i<0):
 				break
-			print(key," ",values)
+			# print(key," ",values)
 		
 		
 		self.data_analysis = stat
