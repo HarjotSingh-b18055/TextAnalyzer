@@ -55,37 +55,4 @@ class HistViewer(ttk.Frame):
             
         # self.histo.get_tk_widget().configure(yscrollcommand=self.scrollbar.set)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
