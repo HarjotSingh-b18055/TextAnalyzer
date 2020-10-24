@@ -14,6 +14,10 @@ Install matplotlib:
 ```bash
 python3 -m pip install -U matplotlib
 ```
+Install nltk
+```bash
+pip install nltk
+```
 
 Run using:
 ```bash
